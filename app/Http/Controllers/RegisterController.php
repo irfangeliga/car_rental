@@ -90,9 +90,21 @@ class RegisterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, register $register)
+    public function update(Request $request, $id)
     {
-        //
+        $post = User::findOrFail($id);
+
+        $post->update([
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'name' => $request->name,
+            'alamat' => $request->alamat,
+            'telepon' => $request->telepon,
+            'no_sim' => $request->no_sim,
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('manage.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**

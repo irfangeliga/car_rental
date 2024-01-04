@@ -16,7 +16,7 @@
                 <form class="shadow bg-dark border border-light p-3 rounded" action="/action" method="POST">
                     @csrf <!-- {{ csrf_field() }} -->
                     <div>
-                        <p class="text-uppercase text-center fs-4 text-warning">Login sdasdas</p>
+                        <p class="text-uppercase text-center fs-4 text-warning">Login Area</p>
                         <hr>
                     </div>
                     <div class="mb-3">

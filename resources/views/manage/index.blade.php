@@ -10,7 +10,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     @if(session('success'))
-        <h1 class="h3 mb-0 text-center text-gray-800">{{session('success')}}</h1>
+        <h1 class="h3 mb-0 text-center text-success">{{session('success')}}</h1>
     @endif
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
@@ -170,47 +170,52 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body">
-                                    @csrf <!-- {{ csrf_field() }} -->
-                                        <div class="row">
-                                            <div class="col-xl-6 mb-3">
-                                                <label for="name" class="form-label">Nama Lengkap</label>
-                                                <input type="text" name="name" id="name" value="{{$post->name}}"
-                                                    class="form-control" required>
+                                    <form action="{{route ('cars.update',$post->id)}}" method="POST" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            @csrf 
+                                            @method('PUT')
+                                            <div class="row">
+                                                    <div class="col-xl-6 mb-3">
+                                                        <label for="name" class="form-label">Nama Lengkap</label>
+                                                        <input type="hidden" name="status" id="status" value="{{$post->status}}"
+                                                            class="form-control" required>
+                                                        <input type="text" name="name" id="name" value="{{$post->name}}"
+                                                            class="form-control" required>
+                                                    </div>
+                                                    <div class="col-xl-6 mb-3">
+                                                        <label for="telepon" class="form-label">Telepon</label>
+                                                        <input type="text" name="telepon" id="telepon" value="{{$post->telepon}}"
+                                                            class="form-control" required>
+                                                    </div>
+                                                    <div class="col-xl-6 mb-3">
+                                                        <label for="email" class="form-label">Email</label>
+                                                        <input type="email" name="email" id="email" value="{{$post->email}}"
+                                                            class="form-control" required>
+                                                    </div>
+                                                    <div class="col-xl-6 mb-3">
+                                                        <label for="sim" class="form-label">Nomor SIM</label>
+                                                        <input type="text" name="no_sim" id="sim" value="{{$post->no_sim}}"
+                                                            class="form-control" required>
+                                                    </div>
                                             </div>
-                                            <div class="col-xl-6 mb-3">
-                                                <label for="telepon" class="form-label">Telepon</label>
-                                                <input type="text" name="telepon" id="telepon" value="{{$post->telepon}}"
-                                                    class="form-control" required>
-                                            </div>
-                                            <div class="col-xl-6 mb-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" name="email" id="email" value="{{$post->email}}"
-                                                    class="form-control" required>
-                                            </div>
-                                            <div class="col-xl-6 mb-3">
-                                                <label for="sim" class="form-label">Nomor SIM</label>
-                                                <input type="text" name="no_sim" id="sim" value="{{$post->no_sim}}"
-                                                    class="form-control" required>
+                                            <div class="row mt-2 mb-3">
+                                                    <div class="col-xl-8">
+                                                        <label for="alamat" class="form-label">Alamat</label>
+                                                        <input type="text" name="alamat" id="alamat" class="form-control" value="{{$post->alamat}}" required>
+                                                    </div>
+                                                    <div class="col-xl-4 mb-3">
+                                                        <label for="password" class="form-label">Password</label>
+                                                        <input type="password" class="form-control form-control"
+                                                            name="password" id="password">
+                                                    </div>
                                             </div>
                                         </div>
-                                        <div class="row mt-2 mb-3">
-                                            <div class="col-xl-8">
-                                                <label for="alamat" class="form-label">Alamat</label>
-                                                <input type="text" name="alamat" id="alamat" class="form-control" value="{{$post->alamat}}" required>
-                                            </div>
-                                            <div class="col-xl-4 mb-3">
-                                                <label for="password" class="form-label">Password</label>
-                                                <input type="password" class="form-control form-control" required
-                                                    name="password" id="password">
-                                            </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
